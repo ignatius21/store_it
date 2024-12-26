@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -19,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import FileUploader from "./FileUploader";
 import { signOutUser } from "@/lib/actions/user.actions";
+import md5 from 'md5'
 
 interface Props {
   avatar: string;
@@ -28,10 +28,16 @@ interface Props {
   accountId: string;
 }
 
+const getGravatarUrl = (email: string) => {
+  const hash = md5(email.trim().toLowerCase())
+  return `https://www.gravatar.com/avatar/${hash}`
+}
+
 const MobileNavigation = ({$id:ownerId,accountId,fullName,avatar,email}: Props) => {
 
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const avatarUrl = getGravatarUrl(email)
   return (
     <header className="mobile-header">
       <Image
@@ -56,7 +62,7 @@ const MobileNavigation = ({$id:ownerId,accountId,fullName,avatar,email}: Props) 
             <SheetTitle>
               <div className="header-user">
                 <Image
-                  src="/assets/images/avatar.png"
+                  src={avatarUrl}
                   alt="user"
                   width={24}
                   height={24}

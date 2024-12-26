@@ -6,14 +6,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import md5 from 'md5'
 
 interface Props {
   fullName: string
   email: string
 }
 
+const getGravatarUrl = (email: string) => {
+  const hash = md5(email.trim().toLowerCase())
+  return `https://www.gravatar.com/avatar/${hash}`
+}
+
 const Sidebar = ({fullName, email}: Props) => {
   const pathname = usePathname()
+  const avatarUrl = getGravatarUrl(email)
   return (
     <aside className='sidebar'>
       <Link href={'/'}>
@@ -61,7 +68,7 @@ const Sidebar = ({fullName, email}: Props) => {
       />
       <div className='sidebar-user-info'>
         <Image
-          src='/assets/images/avatar.png'
+          src={avatarUrl}
           alt='avatar'
           width={40}
           height={40}
