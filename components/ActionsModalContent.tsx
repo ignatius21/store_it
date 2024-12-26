@@ -31,10 +31,10 @@ export const FileDetails = ({file}:{file: Models.Document}) => {
     <>
       <ImageThumbnail file={file} />
       <div className='space-y-4 px-2 pt-2'>
-        <DetaiRow label='Format:' value={file.extension}/>
-        <DetaiRow label='Size:' value={convertFileSize(file.size)}/>
-        <DetaiRow label='Owner:' value={file.owner.fullName}/>
-        <DetaiRow label='Last Edit:' value={formatDateTime(file.$updatedAt) }/>
+        <DetaiRow label='Formato:' value={file.extension}/>
+        <DetaiRow label='Tamaño:' value={convertFileSize(file.size)}/>
+        <DetaiRow label='Dueño:' value={file.owner.fullName}/>
+        <DetaiRow label='Ultima Edicion:' value={formatDateTime(file.$updatedAt) }/>
       </div>
     </>
   );
@@ -51,17 +51,17 @@ export const ShareInput = ({file,onInputChange,onRemove}:Props) => {
     <>
       <ImageThumbnail file={file} />
       <div className='share-wrapper'>
-        <p className='subtitle-2 pl-1 text-light-100'>Share file with other users</p>
+        <p className='subtitle-2 pl-1 text-light-100'>Comparte el archivo con otros usuarios</p>
         <Input
           type='email'
-          placeholder='Enter the email address'
+          placeholder='Ingresa la direccion de email'
           onChange={(e) => onInputChange(e.target.value.trim().split(','))}
           className='share-input-field'
         />
         <div className='pt-4'>
           <div className='flex justify-between'>
-            <p className='subtitle-2 text-light-100'>Shared with</p>
-            <p className='subtitle-2 text-light-200'>{file.users.length} users</p>
+            <p className='subtitle-2 text-light-100'>Compartido con</p>
+            <p className='subtitle-2 text-light-200'>{file.users.length} usuarios</p>
           </div>
           <ul className='pt-2'>
             {file.users.map((email:string) => (

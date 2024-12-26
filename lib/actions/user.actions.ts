@@ -29,14 +29,14 @@ export const sendEmailOTP = async ({ email }: {email:string}) => {
         const session = await account.createEmailToken(ID.unique(), email)
         return session.userId
     } catch (error) {
-        handleError(error, "Failed to send email OTP")
+        handleError(error, "Error al enviar el correo electrónico OTP")
     }
 }
 
 export const createAccount = async ({ fullName, email }: {fullName:string, email:string}) => {
     const existingUser = await getUserByEmail(email)
     const accountId = await sendEmailOTP({email})
-    if(!accountId) throw new Error("Failed to send email OTP")
+    if(!accountId) throw new Error("Error al enviar el correo electrónico OTP")
 
     if(!existingUser){
         const {databases} = await createAdminClient()
@@ -62,7 +62,7 @@ export const verifySecret = async ({ accountId, password }: {accountId:string, p
         }))
         return parseStringify({sessionId: session.$id})
     } catch (error) {
-        handleError(error, "Failed to verify OTP")
+        handleError(error, "Error al verificar el OTP")
     }
 };
 
@@ -87,7 +87,7 @@ export const signOutUser = async () => {
         await account.deleteSession('current');
         (await cookies()).delete('appwrite-session')
     } catch (error) {
-        handleError(error, "Failed to sign out user")
+        handleError(error, "Error al cerrar sesión")
     } finally {
         redirect('/sign-in')
     }
@@ -101,9 +101,9 @@ export const signInUser = async ({ email }: {email:string}) => {
             await sendEmailOTP({email})
             return parseStringify({accountId: existingUser.accountId})
         }
-        return parseStringify({acountId: null,error: "User not found"})
+        return parseStringify({acountId: null,error: "Usuario no encontrado"})
 
     } catch (error) {
-        handleError(error, "Failed to sign in user")
+        handleError(error, "Error al iniciar sesión")
     }
 }

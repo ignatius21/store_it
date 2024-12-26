@@ -66,7 +66,7 @@ const Search = () => {
         />
         <Input
           type={query}
-          placeholder="Search..."
+          placeholder="Buscar..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="search-input"
@@ -96,7 +96,7 @@ const Search = () => {
                 </li>
               ))
             ) : (
-              <p className="empty-result">No result</p>
+              <p className="empty-result">No hay resultados</p>
             )}
           </ul>
         )}

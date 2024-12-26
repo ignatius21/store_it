@@ -20,11 +20,11 @@ const page = async ({searchParams,params}: SearchParamProps) => {
         <section className='w-full'>
             <h1 className='h1 capitalize'>{type}</h1>
             <div className='total-size-section'>
-                <p className='bopdy-1'>
+                <p className='body-1'>
                     total: <span className='h5'>0 MB</span>
                 </p>
                 <div className='sort-container'>
-                    <p className='body-1 hidden sm:block text-light-200'>Sort by:</p>
+                    <p className='body-1 hidden sm:block text-light-200'>Ordenar por:</p>
                     <Sort/>
                 </div>
             </div>
@@ -36,7 +36,7 @@ const page = async ({searchParams,params}: SearchParamProps) => {
                     <Card key={file.$id} file={file}/>
                 ))}
             </section>
-        ):<p className='empty-list'>No files Uploaded</p>}
+        ):<p className='empty-list'>No hay archivos subidos</p>}
     </div>
   )
 }

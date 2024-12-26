@@ -92,14 +92,14 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
           {value === 'share' && <ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser}/>}
           {value === 'delete' && (
             <p className="delete-confirmation">
-              Are you sure you want to delete <span className="delete-file-name">{file.name}</span>?
+              Seguro que desea eliminar <span className="delete-file-name">{file.name}</span>?
             </p>
           )}
         </DialogHeader>
         {["rename", "delete", "share"].includes(value) && (
           <DialogFooter className="flex flex-col gap-3 md:flex-row">
             <Button onClick={closeAllModal} className="modal-cancel-button">
-              Cancel
+              Cancelar
             </Button>
             <Button onClick={handleAction} className="modal-submit-button">
               <p className="capitalize">{value}</p>
@@ -141,7 +141,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               onClick={() => {
                 setAction(actionItem);
                 if (
-                  ["rename", 'share','delete', "details"].includes(
+                  ["rename", "share","delete", "details"].includes(
                     actionItem.value
                   )
                 ) {

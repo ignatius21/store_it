@@ -14,10 +14,10 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             className="h-auto"
           />
           <div className="space-y-5 text-white">
-            <h1 className="h1">Manage your files best way</h1>
+            <h1 className="h1">Maneja tus archivos de una mejor manera</h1>
             <p className="body-1">
-              Awesome, we've created the perfect place for you to store all your
-              documents.
+              Increible!...hemos creado una plataforma para que puedas manejar
+              tus archivos de una manera más eficiente.
             </p>
           </div>
           <Image

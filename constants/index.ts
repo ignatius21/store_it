@@ -1,16 +1,16 @@
 export const navItems = [
     {
-      name: 'Dashboard',
+      name: 'Panel de control',
       icon: '/assets/icons/dashboard.svg',
       url: '/',
     },
     {
-      name: 'Documents',
+      name: 'Documentos',
       icon: '/assets/icons/documents.svg',
       url: '/documents',
     },
     {
-      name: 'Images',
+      name: 'Imagenes',
       icon: '/assets/icons/images.svg',
       url: '/images',
     },
@@ -20,7 +20,7 @@ export const navItems = [
       url: '/media',
     },
     {
-      name: 'Others',
+      name: 'Otros',
       icon: '/assets/icons/others.svg',
       url: '/others',
     },
@@ -28,27 +28,27 @@ export const navItems = [
   
   export const actionsDropdownItems = [
     {
-      label: 'Rename',
+      label: 'Renombrar',
       icon: '/assets/icons/edit.svg',
       value: 'rename',
     },
     {
-      label: 'Details',
+      label: 'Detalles',
       icon: '/assets/icons/info.svg',
       value: 'details',
     },
     {
-      label: 'Share',
+      label: 'Compartir',
       icon: '/assets/icons/share.svg',
       value: 'share',
     },
     {
-      label: 'Download',
+      label: 'Descargar',
       icon: '/assets/icons/download.svg',
       value: 'download',
     },
     {
-      label: 'Delete',
+      label: 'Eliminar',
       icon: '/assets/icons/delete.svg',
       value: 'delete',
     },
@@ -56,27 +56,27 @@ export const navItems = [
   
   export const sortTypes = [
     {
-      label: 'Date created (newest)',
+      label: 'Fecha de creación (nuevo)',
       value: '$createdAt-desc',
     },
     {
-      label: 'Created Date (oldest)',
+      label: 'Fecha de creación (viejo)',
       value: '$createdAt-asc',
     },
     {
-      label: 'Name (A-Z)',
+      label: 'Nombre (A-Z)',
       value: 'name-asc',
     },
     {
-      label: 'Name (Z-A)',
+      label: 'Nombre (Z-A)',
       value: 'name-desc',
     },
     {
-      label: 'Size (Highest)',
+      label: 'Tamaño (Grande)',
       value: 'size-desc',
     },
     {
-      label: 'Size (Lowest)',
+      label: 'Tamaño (Pequeño)',
       value: 'size-asc',
     },
   ];

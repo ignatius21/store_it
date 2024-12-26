@@ -36,12 +36,12 @@ export const uploadFile = async ({file, ownerId,accountId,path}:UploadFileProps)
         )
         .catch(async(error) => {
             await storage.deleteFile(appwriteConfig.bucketId, bucketFile.$id)
-            handleError(error, "Failed to create file document")
+            handleError(error, "Error al crear el documento del archivo")
         });
         revalidatePath(path)
         return parseStringify(newFile)
     } catch (error) {
-        handleError(error, "Failed to upload file")
+        handleError(error, "Error al subir el archivo")
     }
 }
 
@@ -70,7 +70,7 @@ export const getFiles = async ({types = [], searchText = '',sort='$createdAt-des
     const {databases} = await createAdminClient()
     try {
         const currentUser = await getCurrentUser();
-        if(!currentUser) throw new Error("User not found");
+        if(!currentUser) throw new Error("Usuario no autenticado");
         const queries = createQueries(currentUser,types,searchText,sort,limit);
         const files = await databases.listDocuments(
             appwriteConfig.databaseId,
@@ -80,7 +80,7 @@ export const getFiles = async ({types = [], searchText = '',sort='$createdAt-des
         return parseStringify(files)
 
     } catch (error) {
-        handleError(error, "Failed to get files")
+        handleError(error, "Error al obtener los archivos")
     }
 }
 
@@ -101,7 +101,7 @@ export const renameFile = async ({fileId, name, path, extension}:RenameFileProps
         return parseStringify(updatedFile)
 
     } catch (error) {
-        handleError(error, "Failed to rename file")
+        handleError(error, "Error al renombrar el archivo")
         
     }
 }
@@ -121,7 +121,7 @@ export const updateFileUsers = async ({fileId, emails, path}:UpdateFileUsersProp
         return parseStringify(updatedFile)
 
     } catch (error) {
-        handleError(error, "Failed to rename file")
+        handleError(error, "Error al actualizar los usuarios del archivo")
         
     }
 }
@@ -142,7 +142,7 @@ export const deleteFiles = async ({fileId, bucketFileId, path}:DeleteFileProps) 
         return parseStringify({status: "success"})
 
     } catch (error) {
-        handleError(error, "Failed to rename file")
+        handleError(error, "Error al eliminar el archivo")
         
     }
 }
@@ -151,7 +151,7 @@ export async function getTotalSpaceUsed() {
     try {
       const { databases } = await createSessionClient();
       const currentUser = await getCurrentUser();
-      if (!currentUser) throw new Error('User is not authenticated.');
+      if (!currentUser) throw new Error('Usuario no autenticado');
   
       const files = await databases.listDocuments(
         appwriteConfig.databaseId,
@@ -184,6 +184,6 @@ export async function getTotalSpaceUsed() {
   
       return parseStringify(totalSpace);
     } catch (error: any) {
-      handleError('Error calculating total space used:', error);
+      handleError('Error al calcular el espacio utilizado', error);
     }
   }

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -60,7 +59,7 @@ const authFormSchema = (formType: FormType) => {
   
       setAccountId(user.accountId);   
     } catch (error: any) {
-      setErrorMessage('Failed to create account');
+      setErrorMessage('Error al crear la cuenta');
     } finally {
       setIsLoading(false);}
   }
@@ -78,11 +77,11 @@ const authFormSchema = (formType: FormType) => {
               render={({ field }) => (
                 <FormItem>
                   <div className="shad-form-item sm:w-[578px] w-auto">
-                    <FormLabel className="shad-form-label">Full Name</FormLabel>
+                    <FormLabel className="shad-form-label">Nombre Completo</FormLabel>
 
                     <FormControl>
                       <Input
-                        placeholder="Enter your full name"
+                        placeholder="Ingresa tu nombre completo"
                         className="shad-input"
                         {...field}
                       />
@@ -105,7 +104,7 @@ const authFormSchema = (formType: FormType) => {
 
                   <FormControl>
                     <Input
-                      placeholder="Enter your email"
+                      placeholder="Ingresa tu email"
                       className="shad-input"
                       {...field}
                     />
@@ -140,8 +139,8 @@ const authFormSchema = (formType: FormType) => {
           <div className="body-2 flex justify-center">
             <p className="text-light-100">
               {type === "sign-in"
-                ? "Don't have an account?"
-                : "Already have an account?"}
+                ? "No tienes una cuenta?"
+                : "Ya tienes una cuenta?"}
             </p>
             <Link
               href={type === "sign-in" ? "/sign-up" : "/sign-in"}

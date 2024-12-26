@@ -55,7 +55,7 @@ const OTPModal = ({
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader className="relative flex justify-center">
           <AlertDialogTitle className="h2 text-center">
-            Enter your OTP
+            Ingresa tu código de verificación
             <Image
               src={"/assets/icons/close-dark.svg"}
               alt="close"
@@ -66,7 +66,7 @@ const OTPModal = ({
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We send a 6-digit code to{" "}
+            Enviamos el codigo de 6 digitos a:{" "}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -100,9 +100,9 @@ const OTPModal = ({
             )}
             </AlertDialogAction>
             <div className="subtitle-2 mt-2 text-center text-light-100">
-              Didn't receive the code?{" "}
+              No reciviste el codigo?{" "}
               <Button type="button" variant={'link'} className="pl-1" onClick={handleResendOtp}>
-                Resend OTP
+                Reenviar código
               </Button>
             </div>
           </div>

@@ -78,7 +78,7 @@ export const Chart = ({ used = 0 }: { used: number }) => {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-white/70"
                         >
-                          Space used
+                          Espacio utilizado
                         </tspan>
                       </text>
                     );
@@ -90,9 +90,9 @@ export const Chart = ({ used = 0 }: { used: number }) => {
         </ChartContainer>
       </CardContent>
       <CardHeader className="chart-details">
-        <CardTitle className="chart-title">Available Storage</CardTitle>
+        <CardTitle className="chart-title">Espacio Disponible</CardTitle>
         <CardDescription className="chart-description">
-          {used ? convertFileSize(used) : "2GB"} / 2GB
+          {used ? convertFileSize(used) : "2GB"} / 100GB
         </CardDescription>
       </CardHeader>
     </Card>

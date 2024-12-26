@@ -110,7 +110,7 @@ const MobileNavigation = ({$id:ownerId,accountId,fullName,avatar,email}: Props) 
                   width={24}
                   height={24}
                 />
-                <p>Logout</p>
+                <p>Salir</p>
               </Button>
             </div>
           </SheetHeader>
