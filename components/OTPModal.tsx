@@ -100,7 +100,7 @@ const OTPModal = ({
             )}
             </AlertDialogAction>
             <div className="subtitle-2 mt-2 text-center text-light-100">
-              No reciviste el codigo?{" "}
+              No recibiste el codigo?{" "}
               <Button type="button" variant={'link'} className="pl-1" onClick={handleResendOtp}>
                 Reenviar código
               </Button>
