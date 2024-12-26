@@ -1,15 +1,20 @@
 import Card from '@/components/Card'
 import Sort from '@/components/Sort'
-import { Button } from '@/components/ui/button'
 import { getFiles } from '@/lib/actions/file.actions'
-import Image from 'next/image'
+import { getFileTypesParams } from '@/lib/utils'
 import { Models } from 'node-appwrite'
-import path from 'path'
 import React from 'react'
 
-const page = async ({params}: SearchParamProps) => {
+const page = async ({searchParams,params}: SearchParamProps) => {
     const type = (await params) ?.type as string || ''
-    const files = await getFiles()
+
+    const searchText = ((await searchParams) ?.query as string) || ''
+
+    const sort = ((await searchParams) ?.sort as string) || ''
+
+    const types = getFileTypesParams(type) as FileType[]
+
+    const files = await getFiles({types,searchText,sort})
   return (
     <div className='page-container'>
         <section className='w-full'>
