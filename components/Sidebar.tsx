@@ -1,12 +1,11 @@
 'use client'
 
 import { navItems } from '@/constants'
-import { getCurrentUser } from '@/lib/actions/user.actions'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 interface Props {
   fullName: string
