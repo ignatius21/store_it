@@ -35,7 +35,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
   const [isLoading, setIsLoading] = useState(false);
-  const [emails, setEmails] = useState<string[]>([])
+  const [emails, setEmails] = useState<string[]>([]);
 
   const path = usePathname();
 
@@ -44,39 +44,41 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     setIsDropdownOpen(false);
     setAction(null);
     setName(file.name);
-    // setEmails([])
   };
 
   const handleAction = async () => {
-    if(!action) return;
+    if (!action) return;
     setIsLoading(true);
     let success = false;
 
     const actions = {
-      rename: () => 
-        renameFile({fileId: file.$id, name,extension:file.extension, path}),
-        share: () => updateFileUsers({fileId: file.$id, emails, path}),
-        delete: () => deleteFiles({fileId: file.$id, bucketFileId: file.bucketFileId, path}),
+      rename: () => renameFile({ fileId: file.$id, name, extension: file.extension, path }),
+      share: () => updateFileUsers({ fileId: file.$id, emails, path }),
+      delete: () => deleteFiles({ fileId: file.$id, bucketFileId: file.bucketFileId, path }),
     };
     success = await actions[action.value as keyof typeof actions]();
-    if(success) closeAllModal();
+    if (success) closeAllModal();
     setIsLoading(false);
   };
 
   const handleRemoveUser = async (email: string) => {
     const updatedEmails = emails.filter((e) => e !== email);
 
-    const success = await updateFileUsers({fileId: file.$id, emails: updatedEmails, path});
+    const success = await updateFileUsers({ fileId: file.$id, emails: updatedEmails, path });
 
-    if(success) setEmails(updatedEmails);
+    if (success) setEmails(updatedEmails);
     closeAllModal();
-  }
+  };
 
   const renderDialogContent = () => {
     if (!action) return null;
     const { value, label } = action;
     return (
-      <DialogContent className="shad-dialog button">
+      <DialogContent
+        className="shad-dialog button"
+        onInteractOutside={(e) => e.preventDefault()}
+        onEscapeKeyDown={(e) => e.preventDefault()}
+      >
         <DialogHeader className="flex flex-col gap-3">
           <DialogTitle className="text-center text-light-100">
             {label}
@@ -88,9 +90,11 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               onChange={(e) => setName(e.target.value)}
             />
           )}
-          {value === 'details' && <FileDetails file={file} />}
-          {value === 'share' && <ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser}/>}
-          {value === 'delete' && (
+          {value === "details" && <FileDetails file={file} />}
+          {value === "share" && (
+            <ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser} />
+          )}
+          {value === "delete" && (
             <p className="delete-confirmation">
               Seguro que desea eliminar <span className="delete-file-name">{file.name}</span>?
             </p>
@@ -140,11 +144,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               className="shad-dropdown-item"
               onClick={() => {
                 setAction(actionItem);
-                if (
-                  ["rename", "share","delete", "details"].includes(
-                    actionItem.value
-                  )
-                ) {
+                if (["rename", "share", "delete", "details"].includes(actionItem.value)) {
                   setIsModalOpen(true);
                 }
               }}
